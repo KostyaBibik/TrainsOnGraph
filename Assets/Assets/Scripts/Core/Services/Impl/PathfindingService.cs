@@ -35,7 +35,7 @@ namespace Core
             return node?.Position ?? Vector3.zero;
         }
         
-        public IReadOnlyList<GraphNodeModel> CalculateRoute(int startNodeId, EGraphNodeType nodeType)
+        public IReadOnlyList<GraphNodeModel> CalculateRoute(int startNodeId, EGraphNodeType targetType, TrainModel train)
         {
             var graph = _graphService.GetGraph();
             var startNode = graph.GetNodeById(startNodeId);
@@ -43,21 +43,53 @@ namespace Core
             if (startNode == null)
                 return new List<GraphNodeModel>();
 
-            var targetNodes = graph.Nodes.Where(n => n.Type == nodeType).ToList();
-
+            var targetNodes = graph.Nodes.Where(n => n.Type == targetType).ToList();
             if (!targetNodes.Any())
                 return new List<GraphNodeModel>();
 
             var pathfindingResult = FindShortestPathsFromNode(startNode, graph.Nodes);
 
-            var closestTarget = FindClosestTargetNode(targetNodes, pathfindingResult.DistanceToNode);
+            GraphNodeModel bestTarget = null;
+            var bestScore = targetType == EGraphNodeType.MineStation ? float.MaxValue : float.MinValue;
 
-            if (closestTarget == null)
+            foreach (var target in targetNodes)
+            {
+                if (!pathfindingResult.DistanceToNode.TryGetValue(target, out var distance))
+                    continue;
+
+                float travelTime = distance / train.SpeedMoving;
+                float score;
+
+                if (targetType == EGraphNodeType.MineStation && target is MineStationNodeModel mine)
+                {
+                    var miningTime = train.TimeMining * mine.MiningTimeMultiplier;
+                    score = travelTime + miningTime;
+
+                    if (score < bestScore)
+                    {
+                        bestScore = score;
+                        bestTarget = target;
+                    }
+                }
+                else if (targetType == EGraphNodeType.Base && target is BaseNodeModel baseNode)
+                {
+                    score = baseNode.ResourceMultiplier / travelTime;
+
+                    if (score > bestScore)
+                    {
+                        bestScore = score;
+                        bestTarget = target;
+                    }
+                }
+            }
+
+            if (bestTarget == null)
                 return new List<GraphNodeModel>();
 
-            var path = BuildPathFromResults(pathfindingResult.PreviousNode, startNode, closestTarget);
+            var path = BuildPathFromResults(pathfindingResult.PreviousNode, startNode, bestTarget);
             return path;
         }
+
 
         private PathfindingResult FindShortestPathsFromNode(GraphNodeModel startNode, IEnumerable<GraphNodeModel> allNodes)
         {
@@ -99,23 +131,6 @@ namespace Core
             }
 
             return new PathfindingResult(distances, previousNodes);
-        }
-
-        private GraphNodeModel FindClosestTargetNode(List<GraphNodeModel> targets, Dictionary<GraphNodeModel, float> distances)
-        {
-            GraphNodeModel closest = null;
-            var minDistance = float.MaxValue;
-
-            foreach (var target in targets)
-            {
-                if (distances.TryGetValue(target, out var dist) && dist < minDistance)
-                {
-                    minDistance = dist;
-                    closest = target;
-                }
-            }
-
-            return closest;
         }
 
         private List<GraphNodeModel> BuildPathFromResults(Dictionary<GraphNodeModel, GraphNodeModel> previousNodes,

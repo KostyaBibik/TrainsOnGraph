@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Core;
 using Enums;
 using UnityEngine;
@@ -26,7 +27,11 @@ namespace Infrastructure
                 ? EGraphNodeType.Base
                 : EGraphNodeType.MineStation;
 
-            var route = new List<GraphNodeModel>(_context.PathfindingService.CalculateRoute(_context.Model.CurrentNodeId, targetNodeType));
+            var route = _context.PathfindingService.CalculateRoute(
+                _context.Model.CurrentNodeId,
+                targetNodeType,
+                _context.Model).ToList();
+            
             _endNode = route[^1];
             _context.Model.SetRoute(route);
 
