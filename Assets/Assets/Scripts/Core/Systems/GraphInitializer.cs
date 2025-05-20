@@ -78,7 +78,7 @@ namespace Assets.Scripts.Core.Systems
                     var neighborWaypoint = connection.Neighbor;
                     var toNode = _waypointToNodeMap[neighborWaypoint];
 
-                    if (String.CompareOrdinal(fromNode.Id, toNode.Id) >= 0)
+                    if (fromNode.Id == toNode.Id)
                         continue;
 
                     var length = connection.EdgeLength > 0f

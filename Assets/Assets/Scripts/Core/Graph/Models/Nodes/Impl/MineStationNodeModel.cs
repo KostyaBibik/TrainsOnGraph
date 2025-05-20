@@ -7,7 +7,7 @@ namespace Core
     {
         public float MiningTimeMultiplier { get; set; }
 
-        public MineStationNodeModel(string id, Vector3 position, float miningTimeMultiplier)
+        public MineStationNodeModel(int id, Vector3 position, float miningTimeMultiplier)
             : base(id, EGraphNodeType.MineStation, position)
         {
             MiningTimeMultiplier = miningTimeMultiplier;

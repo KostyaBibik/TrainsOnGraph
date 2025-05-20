@@ -16,3 +16,4 @@ MonoBehaviour:
   _mineStationNodePrefab: {fileID: 9061773043147851824, guid: 5d4c7be19c21af84ca99e8c344723513, type: 3}
   _emptyNodePrefab: {fileID: 5147528270065903897, guid: 51b6c7e7e030412479aa5777125251fb, type: 3}
   _edgePrefab: {fileID: 8004381496051301473, guid: 088c5dc4b60a30440ac1089e09394430, type: 3}
+  _trainPrefab: {fileID: 9098941082758178238, guid: 43b2b1c98908f3443978faf86a0d330b, type: 3}

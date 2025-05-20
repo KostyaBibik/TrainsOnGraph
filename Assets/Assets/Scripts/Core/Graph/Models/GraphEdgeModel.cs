@@ -7,7 +7,7 @@ namespace Assets.Scripts.Core.Graph
         public GraphNodeModel From;
         public GraphNodeModel To;
         public float Length;
-
+        
         public GraphEdgeModel(GraphNodeModel from, GraphNodeModel to, float length)
         {
             From = from;

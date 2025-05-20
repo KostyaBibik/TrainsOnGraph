@@ -1,5 +1,4 @@
-﻿using System;
-using Assets.Scripts.Core.Graph;
+﻿using Assets.Scripts.Core.Graph;
 using Assets.Scripts.Core.Graph.Views;
 using Core;
 using DataBase;
@@ -11,9 +10,9 @@ namespace Assets.Scripts.Infrastructure.Factories.Impl
     public class GraphObjectFactory : IGraphObjectFactory
     {
         private readonly DiContainer _container;
-        private readonly GraphViewSettings _settings;
+        private readonly GameSettings _settings;
 
-        public GraphObjectFactory(DiContainer container, GraphViewSettings settings)
+        public GraphObjectFactory(DiContainer container, GameSettings settings)
         {
             _container = container;
             _settings = settings;

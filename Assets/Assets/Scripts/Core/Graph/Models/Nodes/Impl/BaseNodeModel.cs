@@ -7,7 +7,7 @@ namespace Core
     {
         public float ResourceMultiplier { get; set; }
 
-        public BaseNodeModel(string id, Vector3 position, float resourceMultiplier)
+        public BaseNodeModel(int id, Vector3 position, float resourceMultiplier)
             : base(id, EGraphNodeType.Base, position)
         {
             ResourceMultiplier = resourceMultiplier;

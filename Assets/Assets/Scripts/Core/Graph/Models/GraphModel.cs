@@ -24,7 +24,7 @@ namespace Assets.Scripts.Core.Graph
             edge.To.Edges.Add(edge);
         }
 
-        public GraphNodeModel GetNodeById(string id) => 
+        public GraphNodeModel GetNodeById(int id) => 
             _nodes.FirstOrDefault(n => n.Id == id);
     }
 }

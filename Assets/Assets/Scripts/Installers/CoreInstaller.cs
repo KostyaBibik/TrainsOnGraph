@@ -3,6 +3,7 @@ using Assets.Scripts.Core.Systems;
 using Assets.Scripts.Infrastructure.Factories;
 using Assets.Scripts.Infrastructure.Factories.Impl;
 using Core;
+using Infrastructure;
 using UnityEngine;
 using Zenject;
 
@@ -28,16 +29,21 @@ namespace Assets.Scripts.Installers
         private void BindFactories()
         {
             Container.Bind<IGraphObjectFactory>().To<GraphObjectFactory>().AsSingle();
+            Container.Bind<ITrainFactory>().To<TrainFactory>().AsSingle();
         }
 
         private void BindServices()
         {
             Container.Bind<IGraphService>().To<GraphService>().AsSingle();
+            Container.BindInterfacesTo<TrainAgentService>().AsSingle();
+            Container.BindInterfacesTo<PathfindingService>().AsSingle();
+            Container.BindInterfacesTo<ResourceStorageService>().AsSingle();
         }
 
         private void BindSystems()
         {
-            Container.BindInterfacesAndSelfTo<GraphInitializer>().AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<GraphInitializer>().AsSingle();
+            Container.BindInterfacesAndSelfTo<TrainInitializer>().AsSingle();
         }
     }
 }
