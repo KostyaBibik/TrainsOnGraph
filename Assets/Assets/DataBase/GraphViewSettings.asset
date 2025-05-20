@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4b1686bdaaf4ec182590c92cb99a003, type: 3}
   m_Name: GraphViewSettings
   m_EditorClassIdentifier: 
-  _baseNodePrefab: {fileID: 5644562099546594016, guid: cf9811adc6306844aaa3437e0b5a435b, type: 3}
-  _mineStationNodePrefab: {fileID: 4819533105914089809, guid: 5d4c7be19c21af84ca99e8c344723513, type: 3}
+  _baseNodePrefab: {fileID: 8427635993489587023, guid: cf9811adc6306844aaa3437e0b5a435b, type: 3}
+  _mineStationNodePrefab: {fileID: 9061773043147851824, guid: 5d4c7be19c21af84ca99e8c344723513, type: 3}
+  _emptyNodePrefab: {fileID: 5147528270065903897, guid: 51b6c7e7e030412479aa5777125251fb, type: 3}
   _edgePrefab: {fileID: 8004381496051301473, guid: 088c5dc4b60a30440ac1089e09394430, type: 3}

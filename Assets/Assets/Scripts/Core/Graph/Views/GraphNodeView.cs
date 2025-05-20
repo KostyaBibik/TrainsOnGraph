@@ -10,7 +10,7 @@ namespace Assets.Scripts.Core.Graph.Views
         public void Initialize(GraphNodeModel model)
         {
             _model = model;
-            name = $"Node_{model.NodeType}[{model.Id}]";
+            name = $"Node_{model.Type}[{model.Id}]";
             transform.position = model.Position;
         }
     }

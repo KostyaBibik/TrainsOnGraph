@@ -4,6 +4,7 @@ using Assets.Scripts.Core.Graph;
 using Assets.Scripts.Core.Helpers;
 using Assets.Scripts.Infrastructure.Factories;
 using Core;
+using Enums;
 using UnityEngine;
 using Zenject;
 
@@ -38,19 +39,33 @@ namespace Assets.Scripts.Core.Systems
         {
             foreach (var waypoint in _waypoints)
             {
-                var node = new GraphNodeModel(
-                    waypoint.Id,
-                    waypoint.Type,
-                    waypoint.Position,
-                    waypoint.Multiplier
-                );
+                var nodeModel = CreateNodeModel(waypoint);
 
-                graph.AddNode(node);
-                _waypointToNodeMap[waypoint] = node;
+                graph.AddNode(nodeModel);
+                _waypointToNodeMap[waypoint] = nodeModel;
 
-                _factory.CreateNodeView(node);
+                _factory.CreateNodeView(nodeModel);
             }
         }
+        
+        private GraphNodeModel CreateNodeModel(GraphWaypoint waypoint)
+        {
+            switch (waypoint.Type)
+            {
+                case EGraphNodeType.Base:
+                    return new BaseNodeModel(waypoint.Id, waypoint.Position, waypoint.Multiplier);
+
+                case EGraphNodeType.MineStation:
+                    return new MineStationNodeModel(waypoint.Id, waypoint.Position, waypoint.Multiplier);
+
+                case EGraphNodeType.Empty:
+                    return new EmptyNodeModel(waypoint.Id, waypoint.Position);
+
+                default:
+                    throw new ArgumentException($"Unsupported node type {waypoint.Type}");
+            }
+        }
+ 
         
         private void CreateGraphEdges(GraphModel graph)
         {

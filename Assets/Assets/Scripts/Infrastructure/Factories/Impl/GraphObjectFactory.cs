@@ -1,8 +1,8 @@
-﻿using Assets.Scripts.Core.Graph;
+﻿using System;
+using Assets.Scripts.Core.Graph;
 using Assets.Scripts.Core.Graph.Views;
 using Core;
 using DataBase;
-using Enums;
 using UnityEngine;
 using Zenject;
 
@@ -21,9 +21,7 @@ namespace Assets.Scripts.Infrastructure.Factories.Impl
 
         public void CreateNodeView(GraphNodeModel node)
         {
-            var prefab = node.NodeType == EGraphNodeType.Base
-                ? _settings.BaseNodePrefab
-                : _settings.MineStationNodePrefab;
+            var prefab = _settings.GetNodePrefabByType(node.Type);
 
             var instance = _container.InstantiatePrefab(prefab, node.Position, Quaternion.identity, null);
             var view = instance.GetComponent<GraphNodeView>();
