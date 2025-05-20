@@ -1,6 +1,5 @@
 ﻿using DataBase;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Zenject;
 
 namespace Assets.Scripts.Installers
@@ -8,11 +7,13 @@ namespace Assets.Scripts.Installers
     [CreateAssetMenu(fileName = nameof(SettingsInstaller), menuName = "Installers/" + nameof(SettingsInstaller))]
     public class SettingsInstaller : ScriptableObjectInstaller
     {
-        [FormerlySerializedAs("_graphViewSettings")] [SerializeField] private GameSettings gameSettings;
+        [SerializeField] private GameSettings _gameSettings;
+        [SerializeField] private TrainSettings _trainSettings;
 
         public override void InstallBindings()
         {
-            Container.BindInstance(gameSettings).AsSingle();
+            Container.BindInstance(_gameSettings).AsSingle();
+            Container.BindInstance(_trainSettings).AsSingle();
         }
     }
 }

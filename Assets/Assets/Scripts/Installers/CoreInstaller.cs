@@ -1,8 +1,4 @@
-﻿using Assets.Scripts.Core.Helpers;
-using Assets.Scripts.Core.Systems;
-using Assets.Scripts.Infrastructure.Factories;
-using Assets.Scripts.Infrastructure.Factories.Impl;
-using Core;
+﻿using Core;
 using Infrastructure;
 using UnityEngine;
 using Zenject;

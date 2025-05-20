@@ -1,11 +1,9 @@
-﻿using Assets.Scripts.Core.Graph;
-using Assets.Scripts.Core.Graph.Views;
-using Core;
+﻿using Core;
 using DataBase;
 using UnityEngine;
 using Zenject;
 
-namespace Assets.Scripts.Infrastructure.Factories.Impl
+namespace Infrastructure
 {
     public class GraphObjectFactory : IGraphObjectFactory
     {

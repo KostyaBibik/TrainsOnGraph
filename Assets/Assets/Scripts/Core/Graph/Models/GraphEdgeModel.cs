@@ -1,6 +1,4 @@
-﻿using Core;
-
-namespace Assets.Scripts.Core.Graph
+﻿namespace Core
 {
     public class GraphEdgeModel
     {

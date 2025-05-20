@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
-using Core;
 using Enums;
 using UnityEngine;
 
-namespace Assets.Scripts.Core.Graph
+namespace Core
 {
     public class GraphWaypoint : MonoBehaviour
     {

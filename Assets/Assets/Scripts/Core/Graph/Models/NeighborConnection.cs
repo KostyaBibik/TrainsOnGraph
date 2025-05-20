@@ -1,5 +1,4 @@
-﻿using Assets.Scripts.Core.Graph;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Core
 {

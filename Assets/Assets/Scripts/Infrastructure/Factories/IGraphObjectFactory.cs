@@ -1,7 +1,6 @@
-﻿using Assets.Scripts.Core.Graph;
-using Core;
+﻿using Core;
 
-namespace Assets.Scripts.Infrastructure.Factories
+namespace Infrastructure
 {
     public interface IGraphObjectFactory
     {

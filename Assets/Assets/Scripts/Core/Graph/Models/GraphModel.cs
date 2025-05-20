@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Core;
 
-namespace Assets.Scripts.Core.Graph
+namespace Core
 {
     public class GraphModel
     {

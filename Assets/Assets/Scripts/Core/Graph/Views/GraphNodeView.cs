@@ -1,7 +1,6 @@
-﻿using Core;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace Assets.Scripts.Core.Graph.Views
+namespace Core
 {
     public class GraphNodeView : MonoBehaviour
     {

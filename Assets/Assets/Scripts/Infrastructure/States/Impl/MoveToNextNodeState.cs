@@ -3,7 +3,7 @@ using Core;
 using Enums;
 using UnityEngine;
 
-namespace Infrastructure.Impl
+namespace Infrastructure
 {
     public class MoveToNextNodeState : ITrainState
     {
@@ -15,7 +15,6 @@ namespace Infrastructure.Impl
         private Vector3 _target;
         private GraphNodeModel _endNode;
 
-        // Новое поле — длина текущего ребра
         private float _currentEdgeLength;
 
         public void Enter(ITrainContext context)
@@ -48,23 +47,26 @@ namespace Infrastructure.Impl
 
             _target = currentTarget.Position;
 
+            var direction = _target - _context.View.transform.position;
+            if (direction.sqrMagnitude > 0.001f)
+            {
+                _context.View.transform.rotation = Quaternion.LookRotation(Vector3.up, direction);
+            }
+            
             var currentNodeId = _context.Model.CurrentNodeId;
             var nextNodeId = currentTarget.Id;
 
-            // Получаем длину ребра между текущей нодой и целью из модели графа
             _currentEdgeLength = GetEdgeLength(currentNodeId, nextNodeId);
         }
 
         private float GetEdgeLength(int fromNodeId, int toNodeId)
         {
-            // Предположим, у PathfindingService есть метод для получения ребра:
             var edge = _context.PathfindingService.GetEdge(fromNodeId, toNodeId);
             if (edge != null)
             {
                 return edge.Length;
             }
 
-            // Если ребро не найдено, fallback на расстояние в мире:
             var fromPos = _context.Model.CurrentNodeId == fromNodeId 
                 ? _context.View.transform.position
                 : _context.PathfindingService.GetNodePosition(fromNodeId);
@@ -85,7 +87,6 @@ namespace Infrastructure.Impl
             if (_progress < 1f) 
                 return;
 
-            // Завершили движение по ребру
             var hasNext = _context.Model.AdvanceToNextNode();
 
             if (hasNext)

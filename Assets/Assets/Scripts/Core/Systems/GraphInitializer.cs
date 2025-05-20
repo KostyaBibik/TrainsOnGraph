@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using Assets.Scripts.Core.Graph;
-using Assets.Scripts.Core.Helpers;
-using Assets.Scripts.Infrastructure.Factories;
-using Core;
 using Enums;
+using Infrastructure;
 using UnityEngine;
 using Zenject;
 
-namespace Assets.Scripts.Core.Systems
+namespace Core
 {
     public class GraphInitializer : IInitializable
     {

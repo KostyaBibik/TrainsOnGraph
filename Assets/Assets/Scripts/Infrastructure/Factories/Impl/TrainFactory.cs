@@ -1,6 +1,5 @@
 ﻿using Core;
 using DataBase;
-using Infrastructure.Impl;
 using UnityEngine;
 using Zenject;
 
@@ -29,12 +28,12 @@ namespace Infrastructure
             _resourceStorage = resourceStorage;
         }
 
-        public TrainView Create(GraphNodeModel spawnNode)
+        public TrainView Create(GraphNodeModel spawnNode, float speedMoving, float timeMining)
         {
             var view = _container.InstantiatePrefabForComponent<TrainView>(_viewSettings.TrainPrefab);
             view.transform.position = spawnNode.Position;
 
-            var model = new TrainModel($"Train_{Random.Range(1000, 9999)}", spawnNode.Id, 2f, 10);
+            var model = new TrainModel($"Train_{Random.Range(1000, 9999)}", spawnNode.Id, speedMoving, timeMining);
             view.Initialize(model);
             view.SetPosition(spawnNode.Position);
 

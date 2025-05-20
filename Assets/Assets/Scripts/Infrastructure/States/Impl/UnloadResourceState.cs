@@ -1,6 +1,5 @@
 ﻿using System;
 using Core;
-using Infrastructure.Impl;
 using UniRx;
 
 namespace Infrastructure

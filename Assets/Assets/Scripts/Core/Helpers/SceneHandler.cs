@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
-using Assets.Scripts.Core.Graph;
 using UnityEngine;
 
-namespace Assets.Scripts.Core.Helpers
+namespace Core
 {
     public class SceneHandler : MonoBehaviour
     {

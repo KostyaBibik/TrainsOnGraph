@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56c4241515554a029595e188402c92d6, type: 3}
-  m_Name: SettingsInstaller
+  m_Script: {fileID: 11500000, guid: 525b4fc280b94185be7b1272ccbc0c6c, type: 3}
+  m_Name: Train_3
   m_EditorClassIdentifier: 
-  _gameSettings: {fileID: 11400000, guid: d99299b4383862740b25477414fe36a2, type: 2}
-  _trainSettings: {fileID: 11400000, guid: be80d1cf3bd5a17458f50a8070d110d4, type: 2}
+  _speedMoving: 8
+  _timeMining: 8

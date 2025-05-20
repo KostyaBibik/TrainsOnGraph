@@ -4,6 +4,6 @@ namespace Infrastructure
 {
     public interface ITrainFactory
     {
-        public TrainView Create(GraphNodeModel spawnNode);
+        public TrainView Create(GraphNodeModel spawnNode, float speedMoving, float timeMining);
     }
 }

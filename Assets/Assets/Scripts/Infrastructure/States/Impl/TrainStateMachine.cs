@@ -1,8 +1,7 @@
-﻿using System;
-using Core;
+﻿using Core;
 using UniRx;
 
-namespace Infrastructure.Impl
+namespace Infrastructure
 {
     public class TrainStateMachine: ITrainAgent, ITrainContext
     {

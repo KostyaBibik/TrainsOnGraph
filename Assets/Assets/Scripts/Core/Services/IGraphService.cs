@@ -1,6 +1,4 @@
-﻿using Assets.Scripts.Core.Graph;
-
-namespace Core
+﻿namespace Core
 {
     public interface IGraphService
     {
